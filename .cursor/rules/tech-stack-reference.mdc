@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Tech Stack Reference
+
+See [tech-stack.md](mdc:memory-bank/tech-stack.md) for the recommended technology stack, including:
+- JavaScript (ES6+), HTML5, CSS3
+- HTML5 Canvas API for note visualization
+- Web Audio API for audio input and analysis
+- `pitchfinder` for pitch detection
+- `@tonejs/midi` for MIDI parsing
+- YouTube IFrame Player API for video integration
+- Node.js + npm, Vite for development
+- TypeScript (optional) for type checking

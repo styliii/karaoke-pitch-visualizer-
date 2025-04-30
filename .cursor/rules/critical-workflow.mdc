@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Critical Workflow Rules
+
+- **Always read** [architecture.md](mdc:memory-bank/architecture.md) before writing any code. This file should include the entire database schema.
+- **Always read** [game-design-document.md](mdc:memory-bank/game-design-document.md) before writing any code.
+- **After adding a major feature or completing a milestone, update** [architecture.md](mdc:memory-bank/architecture.md).

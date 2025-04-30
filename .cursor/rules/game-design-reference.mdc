@@ -1,0 +1,11 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Game Design Reference
+
+See [game-design-document.md](mdc:memory-bank/game-design-document.md) for:
+- Gameplay mechanics, UI/UX, and technical considerations
+- The scope and features of the Vocal Stream
+- Future enhancement ideas and design rationale

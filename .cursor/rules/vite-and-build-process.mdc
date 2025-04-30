@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Vite and Build Process
+
+- Use Vite's hot module replacement (HMR) for rapid development.
+- Keep build scripts and configuration in sync with the project's actual structure and dependencies.
+- Test production builds locally before deploying.

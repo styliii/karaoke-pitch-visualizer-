@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Type Safety and Linting
+
+- Prefer TypeScript for new modules and refactorings to catch errors early and improve maintainability.
+- Use a linter (e.g., ESLint) and a formatter (e.g., Prettier) for all JavaScript/TypeScript code.
+- Run linting and formatting before every commit.

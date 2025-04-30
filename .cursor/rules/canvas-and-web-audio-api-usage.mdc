@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Canvas and Web Audio API Usage
+
+- Encapsulate Canvas drawing logic in reusable functions or classes.
+- Always clean up and release Web Audio API resources (e.g., disconnect nodes, close streams) when components unmount or the game ends.
+- Use requestAnimationFrame for all Canvas rendering loops.

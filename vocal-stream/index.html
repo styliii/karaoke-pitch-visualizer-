@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vocal Stream</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Start Screen (initially visible) -->
+      <div id="start-screen" class="screen active">
+        <div class="container">
+          <h1>Vocal Stream</h1>
+          <p>
+            Sing along to Taylor Swift's "Love Story" and see how well you match
+            the pitch!
+          </p>
+          <button id="start-button" class="primary-button">Start Game</button>
+        </div>
+      </div>
+
+      <!-- Gameplay Screen (initially hidden) -->
+      <div id="gameplay-screen" class="screen">
+        <div class="container">
+          <!-- YouTube Player Placeholder -->
+          <div id="youtube-player-container"></div>
+
+          <!-- Canvas for Note Visualization -->
+          <div id="canvas-container">
+            <canvas id="note-canvas"></canvas>
+          </div>
+
+          <!-- Controls -->
+          <div id="game-controls">
+            <button id="pause-button" class="control-button">Pause</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Screen (initially hidden) -->
+      <div id="results-screen" class="screen">
+        <div class="container">
+          <h2>Performance Results</h2>
+          <div id="performance-summary"></div>
+          <button id="play-again-button" class="primary-button">
+            Play Again
+          </button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

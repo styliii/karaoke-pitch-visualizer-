@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Dependency Management
+
+- Use npm (or yarn/pnpm) for all dependency management.
+- Always update [tech-stack.md](mdc:memory-bank/tech-stack.md) when adding or removing major dependencies.
+- Lock dependency versions in `package.json` and commit the lockfile.

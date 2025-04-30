@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# YouTube IFrame API Integration
+
+- Always check for API readiness before attempting to control the player.
+- Handle player state changes and errors gracefully.
+- Synchronize game state with video playback time using the YouTube API's time update events.

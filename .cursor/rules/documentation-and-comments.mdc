@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Documentation and Comments
+
+- Document all public functions, classes, and modules using JSDoc or TypeScript doc comments.
+- Update [architecture.md](mdc:memory-bank/architecture.md) and [game-design-document.md](mdc:memory-bank/game-design-document.md) as the codebase evolves.

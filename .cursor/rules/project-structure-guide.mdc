@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Project Structure Guide
+
+- Documentation and planning resources are in the [memory-bank](mdc:memory-bank) directory.
+- Cursor-specific rules are stored in the [.cursor/rules](mdc:.cursor/rules) directory, each as a `.mdc` file.
+- The main asset for pitch visualization is [Love_Story_-_Taylor_Swift.mid](mdc:Love_Story_-_Taylor_Swift.mid).
