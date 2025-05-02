@@ -32,6 +32,7 @@ The main HTML file defines the application structure and includes three main sec
   - YouTube player placeholder (`#youtube-player-container`)
   - Canvas for note visualization (`#note-canvas`)
   - Game controls including a pause button
+  - Latency adjustment slider for synchronization calibration
 
 - **Results Screen**: Hidden container that will display:
   - Performance summary
@@ -46,6 +47,7 @@ The CSS file provides styling for all components:
 - Implements responsive design considerations
 - Styles specific UI elements like buttons and containers
 - Controls the canvas appearance and dimensions
+- Styles error messages for microphone access issues
 
 ### JavaScript Entry Point (`src/main.js`)
 
@@ -57,6 +59,10 @@ The main JavaScript file initializes the application and handles core functional
 - Manages game state transitions (Ready, Playing, Paused, Finished)
 - Provides event listeners for user interaction
 - Controls screen transitions (Start → Gameplay → Results)
+- Requests and manages microphone access
+- Processes audio input using Web Audio API
+- Performs real-time pitch detection using the YIN algorithm
+- Visualizes detected pitch alongside the note targets
 
 ## Component Interactions
 
@@ -64,19 +70,25 @@ The main JavaScript file initializes the application and handles core functional
 
    - MIDI file is loaded and parsed using the @tonejs/midi library
    - Parsed note data is stored in memory for visualization
-   - YouTube player is synchronized with note visualization (to be implemented)
+   - YouTube player is synchronized with note visualization
+   - Audio input from microphone is processed through Web Audio API
+   - Pitch is detected from audio input and compared to target notes
 
 2. **UI Flow**:
 
    - Application starts with the Start Screen visible
-   - Clicking "Start Game" hides Start Screen, shows Gameplay Screen, and starts YouTube video
+   - Clicking "Start Game" requests microphone access
+   - After microphone access granted, Start Screen is hidden, Gameplay Screen is shown
+   - Game starts YouTube video and begins pitch detection and visualization
    - When game ends (video finishes), Gameplay Screen is hidden and Results Screen is shown
    - Clicking "Play Again" returns to Start Screen and resets the game state
 
 3. **Current Interactions**:
    - MIDI data loading and parsing
    - YouTube video embedding and basic control (play, pause)
-   - Canvas initialization with test visualization
+   - Canvas initialization with note visualization
+   - Microphone access request and audio processing
+   - Real-time pitch detection and visualization
 
 ## Technical Implementation Notes
 
@@ -84,9 +96,10 @@ This application follows a modular design approach to separate concerns and impr
 
 - **Technology Stack**: Vanilla JavaScript, HTML5, CSS3
 - **Build Tool**: Vite for fast development and optimized production builds
-- **Libraries**: Using `@tonejs/midi` for MIDI parsing and `pitchfinder` for pitch detection (to be implemented)
+- **Libraries**: Using `@tonejs/midi` for MIDI parsing and `pitchfinder` for pitch detection
 - **Media Integration**: YouTube IFrame Player API for video playback
 - **Rendering**: HTML5 Canvas API for note visualization
+- **Audio Processing**: Web Audio API for microphone input and audio analysis
 - **Browser Support**: Optimized for Chrome
 
 ## Data Structures
@@ -110,9 +123,21 @@ The parsed MIDI data is stored as an array of note objects with the following st
 The game state is managed using a simple state variable with the following possible values:
 
 - `Ready`: Initial state, waiting for user to start the game
-- `Playing`: Game is active, video is playing
+- `Playing`: Game is active, video is playing, pitch detection running
 - `Paused`: Game is temporarily halted
 - `Finished`: Song has ended, displaying results
+
+### Audio Processing
+
+The audio processing pipeline consists of:
+
+1. **Microphone Access**: Using `navigator.mediaDevices.getUserMedia()`
+2. **Audio Context**: Web Audio API's `AudioContext` for processing
+3. **Source Node**: `MediaStreamSource` created from the microphone stream
+4. **Analyzer Node**: `AnalyserNode` for capturing audio data for analysis
+5. **Data Processing**: Using `getFloatTimeDomainData()` to get raw audio samples
+6. **Pitch Detection**: Using the `pitchfinder` library's YIN algorithm to detect pitch
+7. **Visualization**: Mapping the detected frequency to MIDI note number and canvas position
 
 ## Current Implementation Status
 
@@ -120,7 +145,7 @@ The game state is managed using a simple state variable with the following possi
 - ✅ MIDI file parsing
 - ✅ YouTube player integration
 - ✅ Canvas setup
-- ⬜ Note visualization and scrolling
-- ⬜ Pitch detection
+- ✅ Note visualization and scrolling
+- ✅ Pitch detection
 - ⬜ Gameplay mechanics
 - ⬜ Scoring system

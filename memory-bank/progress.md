@@ -60,10 +60,75 @@ All tests for Phase 1 have been successfully verified. The project has a functio
 
 All tests for Phase 2 have been successfully verified. The application can now load and parse the MIDI file, embed and control the YouTube player, and has a configured canvas ready for note visualization.
 
+### Phase 3: Note Visualization & Synchronization (COMPLETED)
+
+- **Step 3.1: Basic Note Rendering (Static)**
+
+  - Implemented MIDI note to canvas coordinate mapping algorithm
+  - Created functions to draw note representations on the canvas
+  - Added visual markers for octaves (C notes) and note labels
+  - Defined appropriate scaling factors for pitch-to-Y-coordinate and duration-to-width
+  - Implemented horizontal bars for each note with proper height and width
+
+- **Step 3.2: Implement Game State & Start Logic**
+
+  - Expanded game state management with proper state transitions
+  - Implemented screen transitions when state changes
+  - Created a proper flow from Start Screen to Gameplay Screen
+
+- **Step 3.3: Basic Video Playback Control**
+
+  - Connected the "Start Game" button to YouTube video playback
+  - Implemented pause/play functionality with the game state
+  - Synchronized game state changes with YouTube player state
+
+- **Step 3.4: Implement Note Scrolling & "Now" Line**
+  - Created the main game loop using requestAnimationFrame
+  - Implemented the "now" line visualization at a fixed position
+  - Added note scrolling based on current playback time
+  - Implemented time window calculation for displaying only visible notes
+  - Added latency adjustment capability for future fine-tuning
+
+All tests for Phase 3 have been successfully verified. The application now displays scrolling notes that are synchronized with the YouTube video playback, with a clear "now" line indicating the current playback position.
+
+- **Step 3.5: Enhanced Synchronization (Added)**
+  - Adjusted default latency to fix synchronization issues between notes and audio
+  - Added user-facing latency adjustment slider for real-time calibration
+  - Implemented visual feedback with gold highlighting for notes currently under the "now" line
+  - Created a flexible system that allows for different devices and network conditions
+
+### Phase 4: Audio Input & Pitch Detection (COMPLETED)
+
+- **Step 4.1: Request Microphone Access**
+
+  - Implemented Web Audio API functionality to request microphone access with `getUserMedia`
+  - Added proper error handling for microphone permission denial
+  - Created a user-friendly error message with retry option when microphone access is denied
+  - Connected microphone access request to the game start flow
+  - Prevented game start when microphone access is denied
+
+- **Step 4.2: Setup Audio Processing Graph**
+
+  - Created an `AudioContext` for processing audio signals
+  - Implemented a `MediaStreamSource` node from the microphone input
+  - Added an `AnalyserNode` for frequency analysis
+  - Connected the audio nodes to create a proper audio processing graph
+  - Added resource cleanup functionality when game ends or restarts
+
+- **Step 4.3: Integrate Pitch Detection**
+  - Implemented the YIN pitch detection algorithm using the `pitchfinder` library
+  - Added functionality to capture audio data from the `AnalyserNode`
+  - Implemented periodic pitch detection using `setTimeout`
+  - Added frequency filtering to ignore unreliable pitch detection results
+  - Created a visual indicator for the detected pitch on the canvas
+  - Added text display showing the current detected frequency and note name
+
+All tests for Phase 4 have been successfully verified. The application now requests microphone access, processes audio input, detects pitch in real-time, and visualizes the detected pitch alongside the target notes on the canvas.
+
 ## Next Steps
 
-- Phase 3: Implement note visualization & synchronization
-  - Basic note rendering (static)
-  - Game state management
-  - Video playback control
-  - Note scrolling and "now" line visualization
+- Phase 5: Implement basic gameplay loop & feedback
+  - Real-time pitch feedback visualization
+  - Basic accuracy comparison logic
+  - Visual feedback on notes
+  - End of song detection & state change
