@@ -362,11 +362,6 @@ function gameLoop(timestamp) {
 
   // Update the canvas
   renderNotes(currentTime);
-
-  // Update pitch detection visualization
-  if (currentPitch) {
-    renderPitchIndicator(currentPitch);
-  }
 }
 
 // Function to start the game loop
@@ -437,66 +432,6 @@ function renderNotes(currentTime) {
   ctx.fillStyle = "white";
   ctx.font = "12px Arial";
   ctx.fillText(`Time: ${currentTime.toFixed(2)}s`, 10, CANVAS_HEIGHT - 10);
-}
-
-// Function to render the pitch indicator
-function renderPitchIndicator(pitch) {
-  const canvas = document.getElementById("note-canvas");
-  if (!canvas) return;
-
-  const ctx = canvas.getContext("2d");
-
-  // Convert Hz to MIDI note number
-  const midiNote = freqToMidi(pitch);
-
-  // Check if the pitch is within our visualization range
-  if (midiNote < minMidiNote || midiNote > maxMidiNote) {
-    return; // Pitch is out of our displayable range
-  }
-
-  // Calculate Y position for the detected pitch
-  const y = midiToY(midiNote);
-
-  // Draw the pitch indicator at the NOW_LINE_POSITION
-  ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
-  ctx.beginPath();
-  ctx.arc(NOW_LINE_POSITION, y, 8, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Add pitch info text
-  ctx.fillStyle = "white";
-  ctx.font = "12px Arial";
-  ctx.fillText(
-    `Pitch: ${pitch.toFixed(1)} Hz (${midiToNoteName(midiNote)})`,
-    NOW_LINE_POSITION + 15,
-    y + 5
-  );
-}
-
-// Convert frequency in Hz to MIDI note number
-function freqToMidi(frequency) {
-  return 69 + 12 * Math.log2(frequency / 440);
-}
-
-// Convert MIDI note number to note name
-function midiToNoteName(midi) {
-  const noteNames = [
-    "C",
-    "C#",
-    "D",
-    "D#",
-    "E",
-    "F",
-    "F#",
-    "G",
-    "G#",
-    "A",
-    "A#",
-    "B",
-  ];
-  const octave = Math.floor(midi / 12) - 1;
-  const noteName = noteNames[midi % 12];
-  return `${noteName}${octave}`;
 }
 
 // Initialize the pitch detector
@@ -622,31 +557,18 @@ function startPitchDetection() {
     }
 
     // Log pitch detection (for verifying Step 4.3)
-    if (detectionCount % 10 === 0) {
-      // Only log every 10th detection to avoid flooding console
-      if (isSilence) {
-        console.log(`Silence detected (RMS: ${volumeLevel.toFixed(5)})`);
-      } else if (
-        rawPitch &&
-        (rawPitch < MINIMUM_FREQUENCY || rawPitch > MAXIMUM_FREQUENCY)
-      ) {
+    if (detectionCount % 20 === 0) {
+      // Only log actual pitch detections when not silent
+      if (!isSilence && pitch) {
         console.log(
-          `Filtered out unreasonable pitch: ${rawPitch.toFixed(
-            1
-          )} Hz (outside valid range)`
-        );
-      } else {
-        console.log(
-          pitch
-            ? `Detected pitch: ${pitch.toFixed(1)} Hz (${midiToNoteName(
-                freqToMidi(pitch)
-              )})`
-            : "No clear pitch detected (non-tonal sound)"
+          `Detected pitch: ${pitch.toFixed(1)} Hz (${midiToNoteName(
+            freqToMidi(pitch)
+          )})`
         );
       }
 
       // Log detection rate occasionally
-      if (detectionCount % 100 === 0) {
+      if (detectionCount % 200 === 0) {
         const detectionRate = (
           (successfulDetections / detectionCount) *
           100
@@ -654,7 +576,6 @@ function startPitchDetection() {
         console.log(
           `Pitch detection stats: ${successfulDetections}/${detectionCount} (${detectionRate}%)`
         );
-        console.log(`Current volume level: ${volumeLevel.toFixed(5)}`);
       }
     }
 
@@ -879,4 +800,30 @@ function showResultsScreen() {
   }
 
   console.log("Results screen shown");
+}
+
+// Convert frequency in Hz to MIDI note number
+function freqToMidi(frequency) {
+  return 69 + 12 * Math.log2(frequency / 440);
+}
+
+// Convert MIDI note number to note name
+function midiToNoteName(midi) {
+  const noteNames = [
+    "C",
+    "C#",
+    "D",
+    "D#",
+    "E",
+    "F",
+    "F#",
+    "G",
+    "G#",
+    "A",
+    "A#",
+    "B",
+  ];
+  const octave = Math.floor(midi / 12) - 1;
+  const noteName = noteNames[midi % 12];
+  return `${noteName}${octave}`;
 }
