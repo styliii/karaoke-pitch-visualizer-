@@ -125,10 +125,64 @@ All tests for Phase 3 have been successfully verified. The application now displ
 
 All tests for Phase 4 have been successfully verified. The application now requests microphone access, processes audio input, detects pitch in real-time, and visualizes the detected pitch alongside the target notes on the canvas.
 
+### Phase 5: Basic Gameplay Loop & Feedback (COMPLETED)
+
+- **Step 5.1: Real-time Pitch Feedback Visualization**
+
+  - Implemented horizontal line indicator showing player's current pitch
+  - Added color-coding for the pitch indicator based on accuracy
+  - Created visual volume display for microphone troubleshooting
+  - Enhanced pitch visualization with fade-in/fade-out effects
+  - Added adaptive pitch smoothing for more stable visualization
+  - Created utility for visualizing pitch range to avoid off-screen indicators
+
+- **Step 5.2: Basic Accuracy Comparison Logic**
+
+  - Implemented logic to compare detected pitch with target notes
+  - Added tolerance threshold for pitch matching (in cents)
+  - Categorized results as "match", "miss-high", "miss-low", or "no-input"
+  - Created reference tone button to hear target notes
+  - Added calibration panel to show exact frequency comparisons
+  - Implemented octave adjustment to handle MIDI transposition needs
+
+- **Step 5.3: Visual Feedback on Notes**
+
+  - Added persistent color-coding of notes based on singing accuracy
+  - Implemented feedback storage for each note (Map data structure)
+  - Applied color changes to notes as they pass under the "now" line
+  - Created visual differentiation between different types of errors
+  - Maintained feedback visualization as notes continue scrolling
+
+- **Step 5.4: End of Song Detection & State Change**
+
+  - Enhanced YouTube player state tracking for reliable end detection
+  - Added backup detection method using video duration and timeouts
+  - Created robust game state transitions for end-of-song events
+  - Implemented thorough cleanup of resources when song ends
+  - Added detailed logging for troubleshooting completion events
+
+- **Step 5.5: Basic Results Screen Display**
+
+  - Created visually appealing performance summary with statistics
+  - Added letter grade (S, A+, A, B, C, D, F) based on match percentage
+  - Implemented color-coded performance bars showing result distribution
+  - Added personalized feedback message based on performance grade
+  - Enhanced styling with CSS for a polished results screen appearance
+
+- **Step 5.6: Implement "Play Again" Logic**
+
+  - Created comprehensive game state reset for new gameplay sessions
+  - Added proper cleanup and reinitialization of audio resources
+  - Fixed microjphone access persistence between gameplay sessions
+  - Implemented reset for user settings (latency, octave adjustment)
+  - Added YouTube player recovery logic for error conditions
+  - Enhanced audio context handling to prevent browser audio limitations
+
+All tests for Phase 5 have been successfully verified. The application now provides a complete gameplay loop with real-time feedback, accurate note comparison, visual feedback, proper song completion detection, appealing results display, and reliable replay functionality.
+
 ## Next Steps
 
-- Phase 5: Implement basic gameplay loop & feedback
-  - Real-time pitch feedback visualization
-  - Basic accuracy comparison logic
-  - Visual feedback on notes
-  - End of song detection & state change
+- Phase 6: Deployment
+  - Prepare for production build
+  - Deploy to Vercel hosting platform
+  - Test deployed version for cross-browser compatibility
