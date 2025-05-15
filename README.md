@@ -1,7 +1,7 @@
 # Vibe Coding Experiment
 
 ## General
-Followed [Nicholas Zullo's](https://x.com/NicolasZu) [Ultimate Guide to Vibe Coding](https://github.com/EnzeD/vibe-coding) to build a simple karaokae game. The purpose of this exercise was to familiarize myself with AI tools, such as Gemini and Cursor. 
+Followed [Nicholas Zullo's](https://x.com/NicolasZu) [Ultimate Guide to Vibe Coding](https://github.com/EnzeD/vibe-coding) to build a simple karaoke game. The purpose of this exercise was to familiarize myself with AI tools, such as Gemini and Cursor. 
 
 ## Takeways 
 1. **Extensive Planning Phase:** A significant portion of time (3 hours) was dedicated to design and planning, which included collaborating with Gemini to develop the game design document. The primary focus was on identifying, researching, and mitigating potential technical risks. Gemini's ability to identify technical challenges from feature lists was particularly impressive and felt like genuine intelligence.
