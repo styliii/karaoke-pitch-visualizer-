@@ -12,8 +12,14 @@ vocal-stream/
 │   ├── main.js             # Application initialization and event handling
 │   ├── style.css           # Global styles and component-specific styling
 │   ├── assets/             # Images and other assets
+├── dist/                   # Build output directory (created after build)
+│   ├── assets/             # Bundled and optimized assets
+│   ├── index.html          # Optimized HTML
+│   └── Love_Story_-_Taylor_Swift.mid # Copied MIDI file
 ├── index.html              # Main HTML structure defining the app layout
-└── package.json            # Project dependencies and scripts
+├── package.json            # Project dependencies and scripts
+├── vercel.json             # Vercel deployment configuration
+└── README.md               # Project documentation
 ```
 
 ## Current File Purposes
@@ -149,3 +155,42 @@ The audio processing pipeline consists of:
 - ✅ Pitch detection
 - ⬜ Gameplay mechanics
 - ⬜ Scoring system
+
+## Deployment Configuration
+
+The application is configured for deployment to Vercel hosting platform:
+
+### Vercel Configuration (`vercel.json`)
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite"
+}
+```
+
+This configuration ensures:
+
+- All routes are handled by the single-page application
+- The correct build command is used
+- The proper output directory is specified
+- Vercel recognizes the project as a Vite application
+
+### Build Process
+
+The build process (`npm run build`) uses Vite to:
+
+1. Bundle JavaScript and CSS assets with optimizations
+2. Minify code for production
+3. Generate a production-ready version in the `dist` directory
+4. Copy static assets from the `public` directory to `dist`
+
+### Hosting Requirements
+
+For optimal functionality, the application requires:
+
+- HTTPS for secure microphone access
+- Proper CORS configuration for YouTube embedding
+- Support for modern JavaScript features (ES6+)
